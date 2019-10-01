@@ -6,7 +6,6 @@ namespace VisitorPattern
 {
     static class Program
     {
-        private static IVisitorContext order;
         private static IServiceProvider serviceProvider;
 
         static void Main(string[] args)
@@ -14,7 +13,7 @@ namespace VisitorPattern
             RegisterDependencies();
 
             Log("Creating Order...");
-            order =
+            IVisitorContext order =
                 new Order(new List<Product>
                 {
                     new Product(Guid.NewGuid(), "Book", 12.0M),
@@ -46,12 +45,12 @@ namespace VisitorPattern
 
     public static class VisitorEngine
     {
-        public static void Run(IServiceProvider serviceProvider, IVisitorContext order)
+        public static void Run(IServiceProvider serviceProvider, IVisitorContext context)
         {
             var visitors = serviceProvider.GetServices<IVisitor>();
             foreach (var visitor in visitors)
             {
-                order.Accept(visitor);
+                context.Accept(visitor);
             }
         }
     }
