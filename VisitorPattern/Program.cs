@@ -12,9 +12,8 @@ namespace VisitorPattern
         static void Main(string[] args)
         {
             RegisterDependencies();
-
             RunVisitors();
-
+           
             Console.ReadLine();
         }
 

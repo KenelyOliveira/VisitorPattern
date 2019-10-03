@@ -2,7 +2,7 @@
 
 namespace VisitorPattern
 {
-    public class Product //: IVisitorContext
+    public class Product : IVisitorContext
     {
         public Product(Guid id, string description, decimal value)
         {
@@ -15,10 +15,10 @@ namespace VisitorPattern
         public string Description { get; set; }
         public decimal  Value { get; set; }
 
-        //public void Accept(IVisitor visitor)
-        //{
-        //    visitor.Visit(this);
-        //}
+        public void Accept(IVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
 
         public override string ToString()
         {
